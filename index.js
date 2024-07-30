@@ -1,5 +1,3 @@
-const path = require('path');
+const os = require('os');
 
-const myPath = '/Users/bappy/www/node-js/index.js';
-
-console.log(path.dirname(myPath));
+console.log(os.cpus());
