@@ -1,4 +1,5 @@
-const _ = require('lodash');
-const popole = require('./pepole');
+const path = require('path');
 
-console.log(_.last(popole));
+const myPath = '/Users/bappy/www/node-js/index.js';
+
+console.log(path.dirname(myPath));
