@@ -1,10 +1,9 @@
-const fs = require('fs');
+const School = require('./school');
 
-fs.writeFile('myFile2.text', 'Hello Bappy', () => {});
-fs.appendFile('myFile2.text', ' Hello Bappy now update', () => {});
+const school = new School();
 
-fs.readFile('myFile.text', (e, data) => {
-    console.log(data.toString());
+school.on('bellRing', ({ period, text }) => {
+    console.log(`we need to run because ${period} ${text}`);
 });
-// fs.unlinkSync('myFile2.text');
-// fs.rename('myFile3.text', 'myFile5.text', () => {});
+
+school.startPeriod(2);
