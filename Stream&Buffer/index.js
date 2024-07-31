@@ -1,27 +1,9 @@
 const http = require('http');
+const fs = require('fs');
 
 const server = http.createServer((req, res) => {
-    if (req.url === '/') {
-        res.write('<html><body>');
-        res.write('<form action="/process" method="post"><input name="message"></form>');
-        res.write('</body></html>');
-        res.end();
-    } else if (req.url === '/process' && req.method === 'POST') {
-        const body = [];
-        req.on('data', (chunk) => {
-            body.push(chunk);
-        });
-        req.on('end', () => {
-            console.log('String finish');
-            const parseBody = Buffer.concat(body).toString();
-            console.log(parseBody);
-            res.write('Thank you for submitting');
-            res.end();
-        });
-    } else {
-        res.write('404 Not Found');
-        res.end();
-    }
+    const myReadStream = fs.createReadStream(`${__dirname}/git.txt`, 'utf8');
+    myReadStream.pipe(res);
 });
 
 server.listen(3000);
